@@ -3,66 +3,108 @@
 <head>
     <meta charset="UTF-8" />
     <title>KickStreamTeam Game Jam</title>
-    <link rel = "stylesheet" href = "indexstyle.css">
+    <link rel="stylesheet" href="indexstyle.css">
 </head>
+
 <body>
 
+<section class="hero">
+    <div class="hero-text">
+        <h1>KickStreamTeam<br>Game Jam</h1>
+        <p>By Tom, Hope, Mihails and Matty</p>
+        <a href="#" class="btn">View game jam</a>
+    </div>
 
-    <script>
+<div class="ids">
+        <p id="name"></p> 
+        <p id="roles"></p>
+    </div>
+
+   
+
+
+   
+    <div class="hero-icon">
+        <a href="#" onclick="location.href = urlArray[getRandomInt()-1];" target="_blank">
+            <img src="shoe.png" alt="Shoe Icon">
+        </a>
+    </div>
+</section>
+
+    
+
+<script>
+   
         var timer;
-
-
         function getRandomInt() {
         const minCeiled = Math.ceil(1);
         const maxFloored = Math.floor(7);
         const random = Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled);
         return random;
     }
-   
-        var urlArray = [
-            "https://kick.com/category/slots",
-            "https://kick.com/sneako",
-            "https://kick.com/n3on",
-            "https://kick.com/jackdoherty",
-            "https://www.littlekickers.co.uk/",
-            "https://kick.com/clavicular"
-        ]
-   
-    </script>
 
 
-    <section class="hero">
-        <div class="hero-text">
-            <h1>KickStreamTeam<br>Game Jam</h1>
-            <p>By Tom, Hope, Mihails and Matty</p>
-            <a href="#" class="btn">View game jam</a>
-        </div>
-   
-   
-    <div class = "Name">
-        <p id="names"></p>
+    var urlArray = [
+        "https://kick.com/category/slots",
+        "https://kick.com/sneako",
+        "https://kick.com/n3on",
+        "https://kick.com/jackdoherty",
+        "https://www.littlekickers.co.uk/",
+        "https://kick.com/clavicular"
+    ];
+
+    
+
+const names = ["Tom", "Hope", "Mihails", "Matty"];
+const roles = [
+  "Unreal Engine",
+  "Programming & Website Development",
+  "3D Modeling and Art",
+  "Visual Design and Google Slides"
+];
+
+let index = 0;
+let charIndex = 0;
+let isDeleting = false;
+
+const nameEl = document.getElementById("name");
+const rolesEl = document.getElementById("roles");
+
+function loopText() {
+  const currentName = names[index];
+  const currentRole = roles[index];
+
+  const maxLength = Math.max(currentName.length, currentRole.length);
+
+  if (!isDeleting) {
+    nameEl.textContent = currentName.substring(0, charIndex + 1);
+    rolesEl.textContent = currentRole.substring(0, charIndex + 1);
+    charIndex++;
+
+    if (charIndex === maxLength) {
+      setTimeout(() => (isDeleting = true), 1000);
+    }
+  } else {
+    nameEl.textContent = currentName.substring(0, charIndex - 1);
+    rolesEl.textContent = currentRole.substring(0, charIndex - 1);
+    charIndex--;
+
+    if (charIndex === 0) {
+      isDeleting = false;
+      index = (index + 1) % names.length;
+    }
+  }
+
+  const speed = isDeleting ? 60 : 100;
+  setTimeout(loopText, speed);
+}
+
+loopText();
 
 
-        <script>
-        const names = ["Tom", "Hope", "Mihails", "Matty"];
-        let i = 0
-        while (i < names.length) {
-            setTimeout(function() {          
-        let listNames = names.toString();
-        document.getElementById("names").innerHTML = (names[i]);
-        i++
-            },  3000 ) ;
-        }
-        </script>
-       
-    </div>
-     
-        <div class="hero-icon">
-            <a href="#" onclick = "location.href = urlArray[getRandomInt()-1];" target = "_blank"  > <img src="shoe.png" alt="Shoe Icon"> </a>
-           
-        </div>
-     
-    </section>
+
+</script>
+
 
 </body>
 </html>
