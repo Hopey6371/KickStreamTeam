@@ -71,7 +71,18 @@ body {
 }
 
 .hero-icon img {
-    width: 175px;
+    width: 200px;
     height: auto;
+    border-radius: 30px;
 }
 
+.ids {
+    font-size: 50px;
+}
+
+.role {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
