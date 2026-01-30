@@ -81,10 +81,11 @@ body {
 }
 
 .role {
-    font-size: 50px;
+    font-size: 500px;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
 }
+
 
